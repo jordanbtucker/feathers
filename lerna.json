@@ -6,7 +6,10 @@
   "version": "4.0.0-pre.0",
   "command": {
     "bootstrap": {
-      "hoist": true
+      "hoist": true,
+      "nohoist": [
+        "dtslint"
+      ]
     },
     "publish": {
       "allowBranch": "master",

@@ -21,9 +21,11 @@
   "scripts": {
     "install": "lerna bootstrap",
     "publish": "lerna publish",
-    "lint": "tslint 'packages/**/*.js' 'packages/**/*.ts' -c tslint.json --fix",
+    "lint": "npm run tslint && npm run lint-types",
+    "lint-types": "lerna run lint-types",
     "test": "npm run lint && nyc lerna run test",
-    "test:client": "grunt"
+    "test:client": "grunt",
+    "tslint": "tslint 'packages/**/*.js' 'packages/**/*.ts' -c tslint.json --fix"
   },
   "devDependencies": {
     "grunt": "^1.0.4",
