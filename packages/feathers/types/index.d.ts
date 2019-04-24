@@ -1,3 +1,5 @@
+// TypeScript Version: 3.0
+
 /// <reference types='node' />
 
 import { EventEmitter } from 'events';
@@ -6,6 +8,7 @@ declare const createApplication: Feathers;
 export = createApplication;
 
 interface Feathers {
+    // tslint:disable-next-line:no-unnecessary-generics
     <T = any>(): createApplication.Application<T>;
     readonly ACTIVATE_HOOKS: unique symbol;
     version: string;
@@ -142,35 +145,35 @@ declare namespace createApplication {
     interface ServiceMethods<T> {
         [key: string]: any;
 
-        find? (params?: Params): Promise<T | T[] | Paginated<T>>;
+        find?(params?: Params): Promise<T | T[] | Paginated<T>>;
 
-        get? (id: Id, params?: Params): Promise<T>;
+        get?(id: Id, params?: Params): Promise<T>;
 
-        create? (data: Partial<T> | Array<Partial<T>>, params?: Params): Promise<T | T[]>;
+        create?(data: Partial<T> | Array<Partial<T>>, params?: Params): Promise<T | T[]>;
 
-        update? (id: NullableId, data: T, params?: Params): Promise<T>;
+        update?(id: NullableId, data: T, params?: Params): Promise<T>;
 
-        patch? (id: NullableId, data: Partial<T>, params?: Params): Promise<T>;
+        patch?(id: NullableId, data: Partial<T>, params?: Params): Promise<T>;
 
-        remove? (id: NullableId, params?: Params): Promise<T>;
+        remove?(id: NullableId, params?: Params): Promise<T>;
     }
 
     interface SetupMethod {
-        setup (app: Application, path: string): void;
+        setup(app: Application, path: string): void;
     }
 
     interface ServiceOverloads<T> {
-        create? (data: Array<Partial<T>>, params?: Params): Promise<T[]>;
+        create?(data: Array<Partial<T>>, params?: Params): Promise<T[]>;
 
-        create? (data: Partial<T>, params?: Params): Promise<T>;
+        create?(data: Partial<T>, params?: Params): Promise<T>;
 
-        patch? (id: NullableId, data: Pick<T, keyof T>, params?: Params): Promise<T>;
+        patch?(id: NullableId, data: Pick<T, keyof T>, params?: Params): Promise<T>;
     }
 
     interface ServiceAddons<T> extends EventEmitter {
         id?: any;
         _serviceEvents: string[];
-        hooks (hooks: Partial<HooksObject>): this;
+        hooks(hooks: Partial<HooksObject>): this;
     }
 
     type Service<T> = ServiceOverloads<T> & ServiceAddons<T> & ServiceMethods<T>;
@@ -186,28 +189,28 @@ declare namespace createApplication {
 
         methods: string[];
 
-        get (name: string): any;
+        get(name: string): any;
 
-        set (name: string, value: any): this;
+        set(name: string, value: any): this;
 
-        disable (name: string): this;
+        disable(name: string): this;
 
-        disabled (name: string): boolean;
+        disabled(name: string): boolean;
 
-        enable (name: string): this;
+        enable(name: string): this;
 
-        enabled (name: string): boolean;
+        enabled(name: string): boolean;
 
-        configure (callback: (this: this, app: this) => void): this;
+        configure(callback: (this: this, app: this) => void): this;
 
-        hooks (hooks: Partial<HooksObject>): this;
+        hooks(hooks: Partial<HooksObject>): this;
 
-        setup (server?: any): this;
+        setup(server?: any): this;
 
-        service<L extends keyof ServiceTypes> (location: L): ServiceTypes[L];
+        service<L extends keyof ServiceTypes>(location: L): ServiceTypes[L];
 
-        service (location: string): Service<any>;
+        service(location: string): Service<any>;
 
-        use (path: string, service: Partial<ServiceMethods<any> & SetupMethod> | Application, options?: any): this;
+        use(path: string, service: Partial<ServiceMethods<any> & SetupMethod> | Application, options?: any): this;
     }
 }

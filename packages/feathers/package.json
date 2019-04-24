@@ -14,7 +14,7 @@
     "realtime"
   ],
   "main": "lib/index.js",
-  "types": "index.d.ts",
+  "types": "types",
   "author": {
     "name": "Feathers contributors",
     "email": "hello@feathersjs.com",
@@ -28,7 +28,10 @@
     "lib": "lib"
   },
   "scripts": {
+    "dtslint": "dtslint types",
+    "lint-types": "npm run tslint && npm run dtslint",
     "test": "mocha --opts ../../mocha.opts",
+    "tslint": "tslint --fix --project types types/**/*.ts",
     "update-version": "node -e \"console.log('module.exports = \\'' + require('./package.json').version + '\\';')\" > lib/version.js",
     "version": "npm run update-version"
   },
@@ -45,6 +48,9 @@
     "uberproto": "^2.0.4"
   },
   "devDependencies": {
-    "mocha": "^6.0.2"
+    "dtslint": "^0.7.0",
+    "mocha": "^6.0.2",
+    "tslint": "^5.15.0",
+    "typescript": "^3.4.2"
   }
 }
